@@ -24,6 +24,16 @@
         </div>
 
         <div>
+            <x-input-label for="permission" :value="__('Permission')" />
+            <select id="permission" name="permission" class="mt-1 block w-full">
+                <option value="uczeń" {{ old('permission', $user->permission) === 'uczen' ? 'selected' : '' }}>Uczen</option>
+                <option value="administrator" {{ old('permission', $user->permission) === 'administrator' ? 'selected' : '' }}>Administrator</option>
+                <option value="nauczyciel" {{ old('permission', $user->permission) === 'nauczyciel' ? 'selected' : '' }}>Nauczyciel</option>
+            </select>
+            <x-input-error class="mt-2" :messages="$errors->get('permission')" />
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
