@@ -9,8 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    Witaj {{ Auth::user()->name }} ({{ Auth::user()->permission }})!
                     
+                    Witaj {{ Auth::user()->name }} ({{ Auth::user()->permission }})!
+</br>
+                    <a href="{{ route('subjects.index') }}">Zajęcia</a>
+                    <a href="{{ route('grades.index') }}">Oceny</a>
+                    <a href="{{ route('students.index') }}">Studenci</a>
+
                     @if (Auth::user()->permission == 'administrator')
                         <br><br>
                         <a href="" class="bunderline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Zarządzaj użytkownikami</a>
