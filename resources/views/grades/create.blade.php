@@ -1,9 +1,18 @@
 <x-app-layout>
 <form action="{{ route('grades.store') }}" method="POST">
     @csrf
-    <input type="text" name="name" placeholder="Grade Name">
-    <textarea name="description" placeholder="Grade Description"></textarea>
+    <input type="number" name="grade" placeholder="Grade">
+    <select name="subject_id">
+        @foreach($subjects as $subject)
+            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+        @endforeach
+    </select>
+    <select name="student_id">
+        @foreach($students as $student)
+            <option value="{{ $student->id }}">{{ $student->name }}</option>
+        @endforeach
+    </select>
     <button type="submit">Create Grade</button>
 </form>
-<a href="{{ route('grades.index') }}">Back</a>
+
 </x-app-layout>
