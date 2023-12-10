@@ -8,9 +8,9 @@
             <option value="{{ $subject->id }}" @if($subject->id === $grade->subject_id) selected @endif>{{ $subject->name }}</option>
         @endforeach
     </select>
-    <select name="student_id">
-        @foreach($students as $student)
-            <option value="{{ $student->id }}" @if($student->id === $grade->student_id) selected @endif>{{ $student->name }}</option>
+    <select name="user_id">
+        @foreach($users as $user)
+            <option value="{{ $user->id }}" @if($user->id === $grade->user_id) selected @endif>{{ $user->name }}</option>
         @endforeach
     </select>
     <button type="submit">Update Grade</button>

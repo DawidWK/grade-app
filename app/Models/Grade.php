@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grade extends Model
 {
-    protected $fillable = ['student_id', 'subject_id', 'grade']; 
+    protected $fillable = ['user_id', 'subject_id', 'grade']; 
 
-    public function student()
+    public function user()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class);
     }
 
     public function subject()

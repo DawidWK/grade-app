@@ -7,9 +7,9 @@
             <option value="{{ $subject->id }}">{{ $subject->name }}</option>
         @endforeach
     </select>
-    <select name="student_id">
-        @foreach($students as $student)
-            <option value="{{ $student->id }}">{{ $student->name }}</option>
+    <select name="user_id">
+        @foreach($users as $user)
+            <option value="{{ $user->id }}">{{ $user->name }}</option>
         @endforeach
     </select>
     <button type="submit">Create Grade</button>

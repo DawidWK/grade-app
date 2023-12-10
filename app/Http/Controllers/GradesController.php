@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use App\Models\Subject;
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GradesController extends Controller
@@ -19,8 +19,8 @@ class GradesController extends Controller
     public function create()
     {
         $subjects = Subject::all();
-        $students = Student::all();
-        return view('grades.create', compact('subjects', 'students'));
+        $users = User::all();
+        return view('grades.create', compact('subjects', 'users'));
     }
 
     public function store(Request $request)
@@ -39,8 +39,8 @@ class GradesController extends Controller
     {
         $grade = Grade::findOrFail($id);
         $subjects = Subject::all();
-        $students = Student::all();
-        return view('grades.edit', compact('grade', 'subjects', 'students'));
+        $users = User::all();
+        return view('grades.edit', compact('grade', 'subjects', 'users'));
     }
 
     public function update(Request $request, $id)

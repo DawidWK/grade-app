@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GradesController;
-use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SubjectsController;
 use Illuminate\Support\Facades\Route;
@@ -40,14 +39,6 @@ Route::get('/grades/{grade}', [GradesController::class, 'show'])->name('grades.s
 Route::get('/grades/{grade}/edit', [GradesController::class, 'edit'])->name('grades.edit');
 Route::put('/grades/{grade}', [GradesController::class, 'update'])->name('grades.update');
 Route::delete('/grades/{grade}', [GradesController::class, 'destroy'])->name('grades.destroy');
-
-Route::get('/students', [StudentsController::class, 'index'])->name('students.index');
-Route::get('/students/create', [StudentsController::class, 'create'])->name('students.create');
-Route::post('/students', [StudentsController::class, 'store'])->name('students.store');
-Route::get('/students/{student}', [StudentsController::class, 'show'])->name('students.show');
-Route::get('/students/{student}/edit', [StudentsController::class, 'edit'])->name('students.edit');
-Route::put('/students/{student}', [StudentsController::class, 'update'])->name('students.update');
-Route::delete('/students/{student}', [StudentsController::class, 'destroy'])->name('students.destroy');
 
 Route::get('/admin', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
