@@ -39,6 +39,7 @@ Route::get('/grades/{grade}', [GradesController::class, 'show'])->name('grades.s
 Route::get('/grades/{grade}/edit', [GradesController::class, 'edit'])->name('grades.edit');
 Route::put('/grades/{grade}', [GradesController::class, 'update'])->name('grades.update');
 Route::delete('/grades/{grade}', [GradesController::class, 'destroy'])->name('grades.destroy');
+Route::get('/grades/my/{id}', [GradesController::class, 'user'])->name('grades.user');
 
 Route::get('/admin', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
@@ -49,5 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';

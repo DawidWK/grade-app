@@ -56,4 +56,16 @@ class GradesController extends Controller
         $grade->delete();
         return redirect()->route('grades.index')->with('success', 'Grade deleted successfully');
     }
+
+    public function user($id)
+    {
+        // Find grade where user id is equal to $id
+        $grades = Grade::where('user_id', $id)->get();
+
+
+        // get current user
+        $user = User::findOrFail($id);
+
+        return view('grades.user', compact('grades', 'user'));
+    }
 }

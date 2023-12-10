@@ -26,7 +26,7 @@
         <div>
             <x-input-label for="permission" :value="__('Permission')" />
             <select id="permission" name="permission" class="mt-1 block w-full">
-                <option value="uczeń" {{ old('permission', $user->permission) === 'uczen' ? 'selected' : '' }}>Uczen</option>
+                <option value="uczen" {{ old('permission', $user->permission) === 'uczen' ? 'selected' : '' }}>Uczen</option>
                 <option value="administrator" {{ old('permission', $user->permission) === 'administrator' ? 'selected' : '' }}>Administrator</option>
                 <option value="nauczyciel" {{ old('permission', $user->permission) === 'nauczyciel' ? 'selected' : '' }}>Nauczyciel</option>
             </select>
