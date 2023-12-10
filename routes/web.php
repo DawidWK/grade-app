@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GradesController;
-
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SubjectsController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,8 +49,10 @@ Route::get('/students/{student}/edit', [StudentsController::class, 'edit'])->nam
 Route::put('/students/{student}', [StudentsController::class, 'update'])->name('students.update');
 Route::delete('/students/{student}', [StudentsController::class, 'destroy'])->name('students.destroy');
 
-
-// Route::get('/students', 'StudentsController@index');
+Route::get('/admin', [AdminController::class, 'users'])->name('admin.users');
+Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+Route::patch('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
+Route::delete('/admin/edit/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
