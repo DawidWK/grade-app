@@ -17,9 +17,10 @@
                     <a href="{{ route('students.index') }}">Studenci</a>
 
                     @if (Auth::user()->permission == 'administrator')
-                        <br><br>
-                        <a href="" class="bunderline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Zarządzaj użytkownikami</a>
+                         <a href="{{ route('register') }}" class="bunderline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Zarządzaj użytkownikami</a>
+                         <a href="{{ route('admin.users') }}" class="bunderline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Admin panel</a>
                     @endif
+
 
                     @if (Auth::user()->permission == 'nauczyciel')
                         <br><br>
