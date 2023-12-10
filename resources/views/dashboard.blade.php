@@ -7,38 +7,51 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 Witaj {{ Auth::user()->name }} ({{ Auth::user()->permission }})!
                 <div class="p-6 text-gray-900 flex">
                     
 
                     @if (Auth::user()->permission == 'administrator')
-                         <a href="{{ route('register') }}" class="bunderline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Zarządzaj użytkownikami</a>
-                         <a href="{{ route('admin.users') }}" class="bunderline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Admin panel</a>
+                         <a href="{{ route('admin.users') }}" >
+                            <button class="w-40 h-40 border shadow rounded m-2 hover:bg-slate-50">
+                                Zarządzaj użytkownikami
+                            </button>
+                        </a>
+                        <a href="{{ route('register') }}" >
+                            <button class="w-40 h-40 border shadow rounded m-2 hover:bg-slate-50">
+                                Dodaj użytkownika
+                            </button>
+                        </a>
+
                     @endif
 
 
                     @if (Auth::user()->permission == 'nauczyciel')
                         <a href="{{ route('grades.index') }}">
-                            <button href=""  class="w-40 h-40 border shadow rounded m-2">
+                            <button class="w-40 h-40 border shadow rounded m-2 hover:bg-slate-50">
                                 Zarządzaj ocenami
-                            <button>
+                            </button>
+
                         </a>
                         <a href="{{ route('subjects.index') }}">
-                            <button href=""  class="w-40 h-40 border shadow rounded m-2">
+                            <button class="w-40 h-40 border shadow rounded m-2 hover:bg-slate-50">
                                 Lista przedmiotów
-                            <button>
+                            </button>
                         </a>
                         <a href="{{ route('subjects.create') }}">
-                            <button href=""  class="w-40 h-40 border shadow rounded m-2">
+                            <button class="w-40 h-40 border shadow rounded m-2 hover:bg-slate-50">
                                 Utwórz nowy przedmiot
-                            <button>
+                            </button>
                         </a>
                     @endif
 
                     @if (Auth::user()->permission == 'uczen')
-                        <br><br>
-                        <a href="" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sprawdź swoje oceny</a>
+                        <a href="{{ route('grades.user', Auth::user()->id) }}">
+                            <button class="w-40 h-40 border shadow rounded m-2 hover:bg-slate-50">
+                                Sprawdź oceny
+                            </button>
+                        </a>
                     @endif
                 </div>
             </div>

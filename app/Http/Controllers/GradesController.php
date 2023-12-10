@@ -59,13 +59,22 @@ class GradesController extends Controller
 
     public function user($id)
     {
-        // Find grade where user id is equal to $id
-        $grades = Grade::where('user_id', $id)->get();
-
-
-        // get current user
+        // Pobierz bieżącego użytkownika
         $user = User::findOrFail($id);
+
+        // Pobierz oceny użytkownika i pogrupuj je według przedmiotu
+        $grades = Grade::where('user_id', $id)->get()
+            ->groupBy('subject_id')
+            ->map(function ($items) {
+                $subjectName = $items[0]->subject->name; 
+                return [
+                    'subject' => $subjectName,
+                    'grades' => $items->pluck('grade') 
+                ];
+            })
+            ->values();
 
         return view('grades.user', compact('grades', 'user'));
     }
+
 }
