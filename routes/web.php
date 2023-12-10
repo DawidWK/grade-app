@@ -43,8 +43,9 @@ Route::get('/grades/my/{id}', [GradesController::class, 'user'])->name('grades.u
 
 Route::get('/admin', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-Route::patch('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
+Route::put('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
 Route::delete('/admin/edit/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

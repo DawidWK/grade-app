@@ -6,6 +6,9 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+
 
 
 class AdminController extends Controller
@@ -21,18 +24,18 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         return view('admin.edit', ['user' => $user]);
     }
-    public function update(ProfileUpdateRequest $request, $id): RedirectResponse
+
+    public function update(Request $request, $id): RedirectResponse
     {
-        $user = User::findOrFail($userId);    
+        $user = User::findOrFail($request->user_id);
         $request->validate([
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-    
         $user->password = Hash::make($request->password);
         $user->save();
     
         return redirect()->back()->with('status', 'password-updated');
-    }
+        }
     
 
     public function destroy(Request $request, $id): RedirectResponse
@@ -41,7 +44,7 @@ class AdminController extends Controller
     
         if ($request->user()->isAdmin()) {
             $user->delete();
-            //Log::info('Administrator usunął użytkownika o ID: ' . $id);
+            Log::info('Administrator usunął użytkownika o ID: ' . $id);
     
             return redirect()->back()->with('success', 'Użytkownik usunięty pomyślnie');
         }
