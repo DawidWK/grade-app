@@ -5,6 +5,18 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Panel Administratora - Zarządzanie Użytkownikami
         </h2>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

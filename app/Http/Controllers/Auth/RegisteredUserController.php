@@ -42,11 +42,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'permission'=> $request->permission,
         ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('admin.users')->with('success', 'User created successfully');
     }
 }

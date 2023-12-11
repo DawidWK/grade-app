@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -35,21 +36,25 @@ class AdminController extends Controller
         $user->save();
     
         return redirect()->back()->with('status', 'password-updated');
-        }
+    }
     
 
     public function destroy(Request $request, $id): RedirectResponse
     {
         $user = User::findOrFail($id);
-    
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+
         if ($request->user()->isAdmin()) {
             $user->delete();
             Log::info('Administrator usunął użytkownika o ID: ' . $id);
     
-            return redirect()->back()->with('success', 'Użytkownik usunięty pomyślnie');
+            return redirect()->route('admin.users')->with('success', 'Użytkownik usunięty pomyślnie');
         }
     
         return redirect()->back()->with('error', 'Brak uprawnień do usunięcia użytkownika');
     }
+        
     
 }
