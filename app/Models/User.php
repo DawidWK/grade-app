@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->permission === 'administrator'; 
     }
+    public function hasPermission($permission)
+    {
+        return $this->permission === $permission;
+    }
 }
