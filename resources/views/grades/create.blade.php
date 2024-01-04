@@ -12,7 +12,7 @@
                         @csrf
                         <div class="flex flex-col justify-start">
                             <label class="mt-6 block font-medium text-sm text-gray-700" for="grade">
-                                Nazwa przedmiotu
+                                Ocena
                             </label>
                             <input required min="1" max="6" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" type="number" name="grade" placeholder="Ocena od 1-6">
 
@@ -26,7 +26,7 @@
                             </select>
 
                             <label class="mt-6 block font-medium text-sm text-gray-700" for="user_id">
-                                Nazwa przedmiotu
+                                Uczeń
                             </label>
                             <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" name="user_id">
                                 @foreach($users as $user)
