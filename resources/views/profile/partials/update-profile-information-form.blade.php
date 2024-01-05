@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            Informacje o profilu
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            Zaktualizuj informacje o profilu i adres e-mail konta.
         </p>
     </header>
 
@@ -18,13 +18,13 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nazwa')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="permission" :value="__('Permission')" />
+            <x-input-label for="permission" :value="__('Uprawnienia')" />
             <select id="permission" name="permission" class="mt-1 block w-full">
                 <option value="uczen" {{ old('permission', $user->permission) === 'uczen' ? 'selected' : '' }}>Uczen</option>
                 <option value="administrator" {{ old('permission', $user->permission) === 'administrator' ? 'selected' : '' }}>Administrator</option>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Zapisz') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p
@@ -67,7 +67,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Zapisano.') }}</p>
             @endif
         </div>
     </form>
