@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    // check if user is logged in
+    if (Auth::check()) {
+        // check if user is admin
+        return redirect()->route('dashboard');
+    }
     return view('welcome');
 });
 
