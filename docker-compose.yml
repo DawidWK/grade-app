@@ -11,7 +11,7 @@ services:
       - .:/var/www
       - ./data:/var/www/data  # folder na bazę danych SQLite
     environment:
-      .env.local  # Przekazuje cały plik .env do kontenera
+      - DB_CONNECTION=sqlite
     networks:
       - app-network
 
