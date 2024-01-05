@@ -14,6 +14,7 @@
         <style>
         </style>
         <link rel="stylesheet" href="{{ asset('resources/css/app.css') }}">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
