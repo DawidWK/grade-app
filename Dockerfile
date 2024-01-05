@@ -37,6 +37,9 @@ RUN composer install
 # Zainstaluj Node.js i npm
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
 
+# zmien nazwe pliku .env.example na .env
+RUN mv .env.local .env
+
 # Zbuduj front-end
 RUN npm install && npm run build
 
