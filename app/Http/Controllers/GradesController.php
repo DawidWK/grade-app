@@ -12,9 +12,11 @@ class GradesController extends Controller
 {
     public function index()
     {
-        $grades = Grade::all();
-        return view('grades.index', compact('grades'));
+        $grades = Grade::with('user', 'subject')->get();
+        $gradesGroupedByUser = $grades->groupBy('user_id');
+        return view('grades.index', compact('gradesGroupedByUser'));
     }
+    
 
     public function create()
     {
@@ -57,24 +59,12 @@ class GradesController extends Controller
         return redirect()->route('grades.index')->with('success', 'Grade deleted successfully');
     }
 
-    public function user($id)
+    public function user()
     {
-        // Pobierz bieżącego użytkownika
-        $user = User::findOrFail($id);
-
-        // Pobierz oceny użytkownika i pogrupuj je według przedmiotu
-        $grades = Grade::where('user_id', $id)->get()
-            ->groupBy('subject_id')
-            ->map(function ($items) {
-                $subjectName = $items[0]->subject->name; 
-                return [
-                    'subject' => $subjectName,
-                    'grades' => $items->pluck('grade') 
-                ];
-            })
-            ->values();
-
-        return view('grades.user', compact('grades', 'user'));
+        $gradesGroupedByUser = Grade::with('user')->get()->groupBy('user_id');
+    
+        return view('grades.user', compact('gradesGroupedByUser'));
     }
+    
 
 }

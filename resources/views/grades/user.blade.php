@@ -1,30 +1,32 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Sprawdź oceny
+            Lista ocen
         </h2>
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <p>Oceny dla użytkownika: {{ $user->name }} </p>
                 <div class="p-6 text-gray-900">
                     <table class="min-w-full">
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Przedmiot</th>
-                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Oceny</th>
+                                <th class="border px-4 py-2">Przedmiot</th>
+                                <th class="border px-4 py-2">Oceny</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white">
-                            @foreach($grades as $item)
+                        <tbody>
+                            @foreach($gradesGroupedByUser as $userId => $userGrades)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        {{ $item['subject'] }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        @foreach($item['grades'] as $grade)
-                                            <span class="inline-block">{{ $grade }}</span>
+                                    <td class="border px-4 py-2">{{ $userGrades->first()->subject->name }}</td>
+                                    <td class="border px-4 py-2">
+                                        @foreach($userGrades as $grade)
+                                            <span class="inline-block relative tooltip"
+                                                title="Opis: {{ $grade->grade }}"
+                                                onmouseover="tooltip(this)"
+                                            >
+                                                {{ $grade->grade }}
+                                            </span>
                                         @endforeach
                                     </td>
                                 </tr>
@@ -36,3 +38,19 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function tooltip(element) {
+        var tooltipText = element.getAttribute('title');
+        if (tooltipText) {
+            var tooltip = document.createElement('div');
+            tooltip.classList.add('bg-gray-800', 'text-white', 'p-2', 'rounded', 'absolute', 'z-10', 'tooltiptext');
+            tooltip.textContent = tooltipText;
+            element.appendChild(tooltip);
+
+            element.addEventListener('mouseout', function () {
+                tooltip.parentNode.removeChild(tooltip);
+            });
+        }
+    }
+</script>
