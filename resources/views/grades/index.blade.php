@@ -22,7 +22,7 @@
                                 <td class="border px-4 py-2">
                                     @foreach($userGrades as $grade)
                                         <span class="inline-block relative tooltip"
-                                            title="{{ $grade->grade }}"
+                                            title="{{ $grade->description }}"
                                             onmouseover="tooltip(this)"
                                         >
                                             <a href="{{ route('grades.edit', $grade->id) }}">{{ $grade->grade }}</a>
@@ -45,7 +45,7 @@
 </x-app-layout>
 <script>
     function tooltip(element) {
-        var tooltipText = element.getAttribute('grade');
+        var tooltipText = element.getAttribute('description');
         if (tooltipText) {
             var tooltip = document.createElement('div');
             tooltip.classList.add('bg-gray-800', 'text-white', 'p-2', 'rounded', 'absolute', 'z-10', 'tooltiptext');

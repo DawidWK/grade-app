@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grade extends Model
 {
-    protected $fillable = ['user_id', 'subject_id', 'grade']; 
+    protected $fillable = ['user_id', 'subject_id', 'grade', 'description']; 
 
     public function user()
     {
@@ -20,4 +20,5 @@ class Grade extends Model
         return $this->belongsTo(Subject::class);
     }
 }
+
 

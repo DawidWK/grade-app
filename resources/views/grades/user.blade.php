@@ -22,7 +22,7 @@
                                     <td class="border px-4 py-2">
                                         @foreach($userGrades as $grade)
                                             <span class="inline-block relative tooltip"
-                                                title="Opis: {{ $grade->grade }}"
+                                                title="{{ $grade->description }}"
                                                 onmouseover="tooltip(this)"
                                             >
                                                 {{ $grade->grade }}
