@@ -7,6 +7,8 @@ use App\Models\Grade;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class GradesController extends Controller
 {
@@ -61,7 +63,12 @@ class GradesController extends Controller
 
     public function user()
     {
-        $gradesGroupedByUser = Grade::with('user')->get()->groupBy('user_id');
+        $loggedInUserId = Auth::id(); 
+    
+        $gradesGroupedByUser = Grade::with('user')
+            ->where('user_id', $loggedInUserId) 
+            ->get()
+            ->groupBy('user_id');
     
         return view('grades.user', compact('gradesGroupedByUser'));
     }
